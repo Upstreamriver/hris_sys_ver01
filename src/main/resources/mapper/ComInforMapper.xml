@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.djin.springboot.mapper.ComInforMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="ComInfor" id="comInforMap">
+        <result property="id" column="id"/>
+        <result property="companyAccount" column="company_account"/>
+        <result property="companyName" column="company_name"/>
+        <result property="personnelName" column="personnel_name"/>
+        <result property="businessName" column="business_name"/>
+        <result property="address" column="address"/>
+        <result property="companyIntroduce" column="company_introduce"/>
+        <result property="companyMailbox" column="company_mailbox"/>
+        <result property="telephone" column="telephone"/>
+        <result property="companyType" column="company_type"/>
+        <result property="industry" column="industry"/>
+    </resultMap>
+  
+  <!--要查询的字段-->  
+  <sql id="sel_ComInforColumns_List" > 
+  	  id ,        
+   company_account  ,        
+   company_name  ,        
+   personnel_name  ,        
+   business_name  ,        
+  address ,        
+   company_introduce  ,        
+   company_mailbox  ,        
+  telephone ,        
+   company_type  ,        
+  industry         
+  
+  </sql>
+  
+  <!--要添加的字段-->
+  <sql id="ins_ComInforColumns_List" >
+       #{id},   #{companyAccount},   #{companyName},   #{personnelName},   #{businessName},   #{address},   #{companyIntroduce},   #{companyMailbox},   #{telephone},   #{companyType},   #{industry}   </sql> 
+  
+  <!--要修改的字段-->
+  <sql id="upd_ComInforColumns_List" >
+    <set>
+    <if test="companyAccount != null">company_account = #{companyAccount}, </if>
+    <if test="companyName != null">company_name = #{companyName}, </if>
+    <if test="personnelName != null">personnel_name = #{personnelName}, </if>
+    <if test="businessName != null">business_name = #{businessName}, </if>
+    <if test="address != null">address = #{address}, </if>
+    <if test="companyIntroduce != null">company_introduce = #{companyIntroduce}, </if>
+    <if test="companyMailbox != null">company_mailbox = #{companyMailbox}, </if>
+    <if test="telephone != null">telephone = #{telephone}, </if>
+    <if test="companyType != null">company_type = #{companyType}, </if>
+    <if test="industry != null">industry = #{industry}</if>
+	</set>
+	where id = #{id}
+  </sql> 
+  
+  <!--定义删除的条件-->
+  <sql id="del_ComInforPramas_List">
+    <where>
+    <if test="id != null">and id = #{id}</if>
+    <if test="companyAccount != null">and company_account = #{companyAccount}</if>
+    <if test="companyName != null">and company_name = #{companyName}</if>
+    <if test="personnelName != null">and personnel_name = #{personnelName}</if>
+    <if test="businessName != null">and business_name = #{businessName}</if>
+    <if test="address != null">and address = #{address}</if>
+    <if test="companyIntroduce != null">and company_introduce = #{companyIntroduce}</if>
+    <if test="companyMailbox != null">and company_mailbox = #{companyMailbox}</if>
+    <if test="telephone != null">and telephone = #{telephone}</if>
+    <if test="companyType != null">and company_type = #{companyType}</if>
+    <if test="industry != null">and industry = #{industry}</if>
+	</where>
+  </sql> 
+  
+  <!--定义查询的条件-->
+  <sql id="sel_ComInforPramas_List">
+    <where>
+    <if test="id != null">and id = #{id}</if>
+    <if test="companyAccount != null">and company_account = #{companyAccount}</if>
+    <if test="companyName != null">and company_name = #{companyName}</if>
+    <if test="personnelName != null">and personnel_name = #{personnelName}</if>
+    <if test="businessName != null">and business_name = #{businessName}</if>
+    <if test="address != null">and address = #{address}</if>
+    <if test="companyIntroduce != null">and company_introduce = #{companyIntroduce}</if>
+    <if test="companyMailbox != null">and company_mailbox = #{companyMailbox}</if>
+    <if test="telephone != null">and telephone = #{telephone}</if>
+    <if test="companyType != null">and company_type = #{companyType}</if>
+    <if test="industry != null">and industry = #{industry}</if>
+	</where>
+  </sql>
+
+    <!--添加-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into com_infor values (<include refid="ins_ComInforColumns_List" />)
+    </insert>
+
+    <!--修改-->
+    <update id="update">
+        update com_infor <include refid="upd_ComInforColumns_List" />
+    </update>
+
+    <!--根据条件删除-->
+    <delete id="delete">
+        delete from com_infor <include refid="del_ComInforPramas_List" />
+    </delete>
+
+    <!--批量删除-->
+    <delete id="deleteBatch">
+        delete from com_infor where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--根据主键id查询单个对象-->
+	<select id="queryObjectById" resultMap="comInforMap">
+		select  <include refid="sel_ComInforColumns_List" />  from com_infor where id = #{id}
+	</select>
+	
+	<!--查询所有对象-->
+	<select id="queryAll" resultMap="comInforMap">
+		select  <include refid="sel_ComInforColumns_List" />  from com_infor
+    </select>
+
+    <!--根据条件（无条件）查询多个对象-->
+	<select id="queryManyByPramas" resultMap="comInforMap">
+		select  <include refid="sel_ComInforColumns_List" />  from com_infor <include refid="sel_ComInforPramas_List" />
+	</select>
+	
+	<!--根据条件（无条件）分页查询-->
+	<select id="queryListByPramas" resultMap="comInforMap">
+		select  <include refid="sel_ComInforColumns_List" />  from com_infor <include refid="sel_ComInforPramas_List" /> order by id desc
+	</select>
+
+    <!--根据条件查询单条数据-->
+    <select id="queryObjectByPramas" resultMap="comInforMap">
+        select  <include refid="sel_ComInforColumns_List" />  from com_infor <include refid="sel_ComInforPramas_List" />
+    </select>
+	
+	<!--根据条件（无条件）查询数据条数-->
+ 	<select id="queryTotalByPramas" resultType="java.lang.Long">
+		select count(*) from com_infor <include refid="sel_ComInforPramas_List" />
+	</select>
+	
+
+
+</mapper>

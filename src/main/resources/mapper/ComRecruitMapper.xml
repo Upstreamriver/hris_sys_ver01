@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.djin.springboot.mapper.ComRecruitMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="ComRecruit" id="comRecruitMap">
+        <result property="companyNeed" column="company_need"/>
+        <result property="postInformation" column="post_information"/>
+        <result property="jobDescription" column="job_description"/>
+        <result property="companyName" column="company_name"/>
+        <result property="companyIntroduce" column="company_introduce"/>
+        <result property="salary" column="salary"/>
+        <result property="telephone" column="telephone"/>
+        <result property="id" column="id"/>
+	    <result property="ci_id" column="ci_id"/>
+    </resultMap>
+  
+  <!--要查询的字段-->  
+  <sql id="sel_ComRecruitColumns_List" > 
+  	   company_need  ,        
+   post_information  ,        
+   job_description  ,        
+   company_name  ,        
+   company_introduce  ,        
+  salary ,        
+  telephone ,        
+  id    ,
+  ci_id
+  
+  </sql>
+  
+  <!--要添加的字段-->
+  <sql id="ins_ComRecruitColumns_List" >
+       #{companyNeed},   #{postInformation},   #{jobDescription},   #{companyName},   #{companyIntroduce},   #{salary},   #{telephone},   #{id} ,#{ci_id}  </sql>
+  
+  <!--要修改的字段-->
+  <sql id="upd_ComRecruitColumns_List" >
+    <set>
+    <if test="companyNeed != null">company_need = #{companyNeed}, </if>
+    <if test="postInformation != null">post_information = #{postInformation}, </if>
+    <if test="jobDescription != null">job_description = #{jobDescription}, </if>
+    <if test="companyName != null">company_name = #{companyName}, </if>
+    <if test="companyIntroduce != null">company_introduce = #{companyIntroduce}, </if>
+    <if test="salary != null">salary = #{salary}, </if>
+    <if test="telephone != null">telephone = #{telephone}, </if>
+	<if test="ci_id != null">ci_id = #{ci_id}, </if>
+	</set>
+	where id = #{id}
+  </sql> 
+  
+  <!--定义删除的条件-->
+  <sql id="del_ComRecruitPramas_List">
+    <where>
+    <if test="companyNeed != null">and company_need = #{companyNeed}</if>
+    <if test="postInformation != null">and post_information = #{postInformation}</if>
+    <if test="jobDescription != null">and job_description = #{jobDescription}</if>
+    <if test="companyName != null">and company_name = #{companyName}</if>
+    <if test="companyIntroduce != null">and company_introduce = #{companyIntroduce}</if>
+    <if test="salary != null">and salary = #{salary}</if>
+    <if test="telephone != null">and telephone = #{telephone}</if>
+    <if test="id != null">and id = #{id}</if>
+	<if test="ci_id != null">and ci_id = #{ci_id} </if>
+	</where>
+  </sql> 
+  
+  <!--定义查询的条件-->
+  <sql id="sel_ComRecruitPramas_List">
+    <where>
+    <if test="companyNeed != null">and company_need = #{companyNeed}</if>
+    <if test="postInformation != null">and post_information = #{postInformation}</if>
+    <if test="jobDescription != null">and job_description = #{jobDescription}</if>
+    <if test="companyName != null">and company_name = #{companyName}</if>
+    <if test="companyIntroduce != null">and company_introduce = #{companyIntroduce}</if>
+    <if test="salary != null">and salary = #{salary}</if>
+    <if test="telephone != null">and telephone = #{telephone}</if>
+    <if test="id != null">and id = #{id}</if>
+	<if test="ci_id != null">and ci_id = #{ci_id} </if>
+	</where>
+  </sql>
+
+    <!--添加-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into com_recruit values (<include refid="ins_ComRecruitColumns_List" />)
+    </insert>
+
+    <!--修改-->
+    <update id="update">
+        update com_recruit <include refid="upd_ComRecruitColumns_List" />
+    </update>
+
+    <!--根据条件删除-->
+    <delete id="delete">
+        delete from com_recruit <include refid="del_ComRecruitPramas_List" />
+    </delete>
+
+    <!--批量删除-->
+    <delete id="deleteBatch">
+        delete from com_recruit where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--根据主键id查询单个对象-->
+	<select id="queryObjectById" resultMap="comRecruitMap">
+		select  <include refid="sel_ComRecruitColumns_List" />  from com_recruit where id = #{id}
+	</select>
+	
+	<!--查询所有对象-->
+	<select id="queryAll" resultMap="comRecruitMap">
+		select  <include refid="sel_ComRecruitColumns_List" />  from com_recruit
+    </select>
+
+    <!--根据条件（无条件）查询多个对象-->
+	<select id="queryManyByPramas" resultMap="comRecruitMap">
+		select  <include refid="sel_ComRecruitColumns_List" />  from com_recruit <include refid="sel_ComRecruitPramas_List" />
+	</select>
+	
+	<!--根据条件（无条件）分页查询-->
+	<select id="queryListByPramas" resultMap="comRecruitMap">
+		select  <include refid="sel_ComRecruitColumns_List" />  from com_recruit <include refid="sel_ComRecruitPramas_List" /> order by id desc
+	</select>
+
+    <!--根据条件查询单条数据-->
+    <select id="queryObjectByPramas" resultMap="comRecruitMap">
+        select  <include refid="sel_ComRecruitColumns_List" />  from com_recruit <include refid="sel_ComRecruitPramas_List" />
+    </select>
+	
+	<!--根据条件（无条件）查询数据条数-->
+ 	<select id="queryTotalByPramas" resultType="java.lang.Long">
+		select count(*) from com_recruit <include refid="sel_ComRecruitPramas_List" />
+	</select>
+	
+
+
+</mapper>
