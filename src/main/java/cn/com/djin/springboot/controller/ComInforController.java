@@ -1,7 +1,10 @@
 package cn.com.djin.springboot.controller;
 
+
+import cn.com.djin.springboot.service.ComInforService;
 import io.swagger.annotations.Api;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import cn.com.djin.springboot.model.ComInfor;
@@ -25,6 +28,8 @@ import java.util.UUID;
 @Api(tags = "企业详情")
 @RequestMapping(value = "/cominfor",method = {RequestMethod.POST,RequestMethod.GET})
 public class ComInforController extends BaseController<ComInfor>{
+    @Autowired
+    protected ComInforService comInforService;
     @RequestMapping("/upload")
     public @ResponseBody
     void upload(MultipartFile cominforFile){
@@ -38,18 +43,25 @@ public class ComInforController extends BaseController<ComInfor>{
             //3.定义上传后的目标文件名(为了避免文件名称重复，此时使用UUID)
             String newFileName = UUID.randomUUID().toString()+"."+originalFileName;
             //4.通过上传路径得到上传的文件夹
-            File file = new File("D:\\dome");
+            File file = new File("C:\\photo");
             //4.1.若目标文件夹不存在，则创建
             if(!file.exists()){ //判断目标文件夹是否存在
                 file.mkdirs();//4.2.不存在，则创建文件夹
             }
             //5.根据目标文件夹和目标文件名新建目标文件（上传后的文件）
-            File newFile = new File("D:\\dome",newFileName);  //空的目标文件
+            File newFile = new File("C:\\photo",newFileName);  //空的目标文件
             //6.根据目标文件的新建其输出流对象
+            //aliyunOSSUtil.upLoad(newFile);
+
             FileOutputStream os = new FileOutputStream(newFile);
             //7.完成输入流到输出流的复制
             IOUtils.copy(is,os);
             //8.关闭流（先开后关）
+            try {
+                comInforService.upLoad(newFileName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             os.close();
             is.close();
 

@@ -41,7 +41,12 @@ public class ComInfor implements Serializable{
 	  private String companyType;
 	  @ApiModelProperty(value = "行业")
 	  private String industry;
-
+	  @ApiModelProperty(value = "企业规模")
+	  private String companySize;
+	  @ApiModelProperty(value = "企业性质")
+	  private String companyNature;
+	  @ApiModelProperty(value = "企业座机号码")
+	  private String companyPhone;
 	  /**
 	   * 设置：企业信息表id
 	   */
@@ -75,9 +80,7 @@ public class ComInfor implements Serializable{
 	  /**
 	   * 获取：企业名字
 	   */
-	  public String getCompanyName() {
-	   	  return companyName;
-	  }
+	  public String getCompanyName() { return companyName; }
 	  /**
 	   * 设置：人事负责人名字
 	   */
@@ -87,9 +90,7 @@ public class ComInfor implements Serializable{
 	  /**
 	   * 获取：人事负责人名字
 	   */
-	  public String getPersonnelName() {
-	   	  return personnelName;
-	  }
+	  public String getPersonnelName() { return personnelName; }
 	  /**
 	   * 设置：企业法人
 	   */
@@ -174,6 +175,42 @@ public class ComInfor implements Serializable{
 	  public String getIndustry() {
 	   	  return industry;
 	  }
+	  /**
+	   * 设置：企业规模
+	   */
+	  public void setCompanySize(String companySize) {
+		this.companySize = companySize;
+	}
+	  /**
+	   * 获取：企业规模
+	  */
+	  public String getCompanySize() {
+		return companySize;
+	}
+	  /**
+	   * 设置：企业性质
+	   */
+	  public void setCompanyNature(String companyNature) {
+		this.companyNature = companyNature;
+	}
+	  /**
+	   * 获取：企业性质
+	   */
+	  public String getCompanyNature() {
+		return companyNature;
+	}
+	  /**
+	   * 设置：企业座机号码
+	   */
+	  public void setCompanyPhone(String companyPhone) {
+		this.companyPhone = companyPhone;
+	}
+	  /**
+	   * 获取：企业座机号码
+	   */
+	  public String getCompanyPhone() {
+		return companyPhone;
+	}
 
 	 
 	  @Override
