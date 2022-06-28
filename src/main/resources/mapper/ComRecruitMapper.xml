@@ -25,7 +25,6 @@
   
   <!--要查询的字段-->  
   <sql id="sel_ComRecruitColumns_List" >
-      comRecruitMap,
     education_need  ,
     experience_need,
    post_information  ,

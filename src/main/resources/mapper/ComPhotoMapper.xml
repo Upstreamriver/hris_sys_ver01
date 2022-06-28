@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.djin.springboot.mapper.ComPhotoMapper">
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="ComPhoto" id="comPhotoMap">
+        <result property="id" column="id"/>
+        <result property="ci_id" column="ci_id"/>
+        <result property="photoPlace" column="photo_place"/>
+        <result property="status" column="status"/>
+    </resultMap>>
+
+    <!--要查询的字段-->
+    <sql id="sel_ComPhotoColumns_List" >
+        id,
+        ci_id,
+        photo_place,
+        status
+    </sql>>
+
+    <!--要添加的字段-->
+    <sql id="ins_ComPhotoColumns_List" >
+        #{id},#{ci_id},#{photoPlace},#{status}
+    </sql>>
+
+    <!--要修改的字段-->
+    <sql id="upd_ComPhotoColumns_List" >
+        <set>
+            <if test="id != null">id = #{id}, </if>
+            <if test="ci_id != null">ci_id = #{ci_id}, </if>
+            <if test="photoPlace != null">photo_place = #{photoPlace}, </if>
+            <if test="status != null">status = #{status}, </if>
+        </set>
+        where id = #{id}
+    </sql>
+
+    <!--定义删除的条件-->
+    <sql id="del_ComPhotoPramas_List">
+        <where>
+            <if test="id != null">and id = #{id}</if>
+            <if test="ci_id != null">and ci_id = #{ci_id}</if>
+            <if test="photoPlace != null">and photo_place = #{photoPlace}</if>
+            <if test="status != null">and status = #{status}</if>
+        </where>
+    </sql>
+
+    <!--定义查询的条件-->
+    <sql id="sel_ComPhotoPramas_List">
+        <where>
+            <if test="id != null">and id = #{id}</if>
+            <if test="ci_id != null">and ci_id = #{ci_id}</if>
+            <if test="photoPlace != null">and photo_place = #{photoPlace}</if>
+            <if test="status != null">and status = #{status}</if>
+        </where>
+    </sql>
+
+    <!--添加-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into com_photo values (<include refid="ins_ComPhotoColumns_List" />)
+    </insert>
+
+    <!--修改-->
+    <update id="update">
+        update com_photo <include refid="upd_ComPhotoColumns_List" />
+    </update>
+
+    <!--根据条件删除-->
+    <delete id="delete">
+        delete from com_photo <include refid="del_ComPhotoPramas_List" />
+    </delete>
+
+    <!--批量删除-->
+    <delete id="deleteBatch">
+        delete from com_photo where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--根据主键id查询单个对象-->
+    <select id="queryObjectById" resultMap="comPhotoMap">
+        select  <include refid="sel_ComPhotoColumns_List" />  from com_photo where id = #{id}
+    </select>
+
+    <!--查询所有对象-->
+    <select id="queryAll" resultMap="comPhotoMap">
+        select  <include refid="sel_ComPhotoColumns_List" />  from com_photo
+    </select>
+
+    <!--根据ci_id查询所有对象-->
+    <select id="queryAll" resultMap="comPhotoMap">
+        select  <include refid="sel_ComPhotoColumns_List" />  from com_photo where ci_id = #{ci_id}
+    </select>
+
+    <!--根据条件（无条件）查询多个对象-->
+    <select id="queryManyByPramas" resultMap="comPhotoMap">
+        select  <include refid="sel_ComPhotoColumns_List" />  from com_photo <include refid="sel_ComPhotoPramas_List" />
+    </select>
+
+    <!--根据条件（无条件）分页查询-->
+    <select id="queryListByPramas" resultMap="comPhotoMap">
+        select  <include refid="sel_ComPhotoColumns_List" />  from com_photo <include refid="sel_ComPhotoPramas_List" /> order by id desc
+    </select>
+
+    <!--根据条件查询单条数据-->
+    <select id="queryObjectByPramas" resultMap="comPhotoMap">
+        select  <include refid="sel_ComPhotoColumns_List" />  from com_photo <include refid="sel_ComPhotoPramas_List" />
+    </select>
+
+    <!--根据条件（无条件）查询数据条数-->
+    <select id="queryTotalByPramas" resultType="java.lang.Long">
+        select count(*) from com_photo <include refid="sel_ComPhotoPramas_List" />
+    </select>
+
+
+
+</mapper>
