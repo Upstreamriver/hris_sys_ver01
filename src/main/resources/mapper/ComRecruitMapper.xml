@@ -150,14 +150,10 @@
 		select  <include refid="sel_ComRecruitColumns_List" />  from com_recruit
     </select>
 
+
     <!--关于postInformation的模糊全查询-->
-    <select id="queryObject" resultType="comRecruitMap">
-        select <include refid="sel_ComRecruitColumns_List"/> from com_recruit
-        <where>
-            <if test="postInformation != null">
-                post_information like "%"#{postInformation}"%"
-            </if>
-        </where>
+    <select id="queryObject" resultMap="comRecruitMap">
+        select <include refid="sel_ComRecruitColumns_List"/> from com_recruit where post_information like "%"#{postInformation}"%"
     </select>
 
     <!--根据条件（无条件）查询多个对象-->

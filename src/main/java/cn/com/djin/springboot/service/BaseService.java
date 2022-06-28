@@ -24,6 +24,10 @@ public interface BaseService<T> {
     //查询所有
   	List<T> findAll() throws Exception;
 
+  	List<T> findObject() throws Exception;
+
+
+
 	//根据id查询单个结果
 	T findTById(Integer id) throws Exception;
   	

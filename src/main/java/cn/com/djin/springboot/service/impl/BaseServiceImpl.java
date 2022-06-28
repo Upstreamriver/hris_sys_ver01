@@ -132,6 +132,11 @@ public class BaseServiceImpl<T> implements BaseService<T>{
 		return baseMapper.queryAll();
 	}
 
+	public List<T> findObject() throws Exception {
+
+		return baseMapper.queryObject();
+	}
+
 	//根据id查询单个结果
 	@Override
 	public T findTById(Integer id) throws Exception {

@@ -22,7 +22,7 @@
     </resultMap>
   
   <!--要查询的字段-->  
-  <sql id="sel_ComInforColumns_List" > 
+  <sql id="sel_ComInforColumns_List" >
   	  id ,        
    company_account  ,        
    company_name  ,        
@@ -138,24 +138,10 @@ company_phone
 		select  <include refid="sel_ComInforColumns_List" />  from com_infor
     </select>
 
-    <!--关于company_name，address，company_size，company_nature的模糊全查询-->
-    <select id="queryObject" resultType="comInforMap">
-        select <include refid="sel_ComInforColumns_List"/> from com_recruit
-        <where>
-            <if test="companyName != null">
-                company_name like "%"#{companyName}"%"
-            </if>
-            <if test="address != null">
-                address like "%"#{address}"%"
-            </if>
-            <if test="companyNature != null">
-                company_size like "%"#{companyNature}"%"
-            </if>
-            <if test="companyNature != null">
-                company_nature like "%"#{companyNature}"%"
-            </if>
-        </where>
+    <select id="queryObject" resultMap="comInforMap">
+        select <include refid="sel_ComInforColumns_List"/> from com_infor where company_name like "%"#{companyName}"%" or   address like "%"#{address}"%" or company_size like "%"#{companySize}"%" or company_nature like "%"#{companyNature}"%"
     </select>
+
 
     <!--根据条件（无条件）查询多个对象-->
 	<select id="queryManyByPramas" resultMap="comInforMap">

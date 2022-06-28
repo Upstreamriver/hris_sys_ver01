@@ -2,13 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.com.djin.springboot.mapper.ComPhotoMapper">
-    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="ComPhoto" id="comPhotoMap">
         <result property="id" column="id"/>
         <result property="ci_id" column="ci_id"/>
         <result property="photoPlace" column="photo_place"/>
         <result property="status" column="status"/>
-    </resultMap>>
+    </resultMap>
 
     <!--要查询的字段-->
     <sql id="sel_ComPhotoColumns_List" >
@@ -16,12 +15,12 @@
         ci_id,
         photo_place,
         status
-    </sql>>
+    </sql>
 
     <!--要添加的字段-->
     <sql id="ins_ComPhotoColumns_List" >
         #{id},#{ci_id},#{photoPlace},#{status}
-    </sql>>
+    </sql>
 
     <!--要修改的字段-->
     <sql id="upd_ComPhotoColumns_List" >
@@ -88,7 +87,7 @@
     </select>
 
     <!--根据ci_id查询所有对象-->
-    <select id="queryAll" resultMap="comPhotoMap">
+    <select id="queryObjectByCiId" resultMap="comPhotoMap">
         select  <include refid="sel_ComPhotoColumns_List" />  from com_photo where ci_id = #{ci_id}
     </select>
 

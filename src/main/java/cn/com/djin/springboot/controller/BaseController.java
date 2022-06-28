@@ -74,6 +74,21 @@ public class BaseController<T> {
 	}
 
 	/**
+	 * 模糊查询
+	 */
+	@ApiOperation(value = "模糊查询",notes = "模糊查询")
+	@RequestMapping("/loadObject")
+	@ResponseBody
+	public List<T> findObject(){
+		try {
+			return baseService.findObject();
+		}catch ( Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
 	 * 根据主键id加载单个数据
 	 */
 	@ApiOperation(value = "根据主键查询", notes = "根据主键查询")

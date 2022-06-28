@@ -28,7 +28,9 @@ public interface BaseMapper<T> {
 	
 	//查询所有
 	List<T> queryAll() throws Exception;
-	
+
+	List<T> queryObject() throws Exception;
+
 	//根据其它条件查询多个结果集
 	List<T> queryManyByOtherPramas(Object obj) throws Exception;
 	
