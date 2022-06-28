@@ -5,46 +5,71 @@
 
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="ComRecruit" id="comRecruitMap">
-        <result property="companyNeed" column="company_need"/>
+        <result property="educationNeed" column="education_need"/>
+        <result property="experienceNeed" column="experience_need"/>
         <result property="postInformation" column="post_information"/>
         <result property="jobDescription" column="job_description"/>
         <result property="companyName" column="company_name"/>
         <result property="companyIntroduce" column="company_introduce"/>
-        <result property="salary" column="salary"/>
+        <result property="baseSalary" column="base_salary"/>
+        <result property="totalSalary" column="total_salary"/>
         <result property="telephone" column="telephone"/>
         <result property="id" column="id"/>
 	    <result property="ci_id" column="ci_id"/>
+        <result property="jobStatus" column="job_status"/>
+        <result property="jobPlace" column="job_place"/>
+        <result property="companyBenefits" column="company_benefits"/>
+        <result property="jobSex" column="job_sex"/>
+        <result property="jobperson" column="jobperson"/>
     </resultMap>
   
   <!--要查询的字段-->  
-  <sql id="sel_ComRecruitColumns_List" > 
-  	   company_need  ,        
-   post_information  ,        
+  <sql id="sel_ComRecruitColumns_List" >
+      comRecruitMap,
+    education_need  ,
+    experience_need,
+   post_information  ,
+    base_salary,
+    total_salary,
    job_description  ,        
-   company_name  ,        
-   company_introduce  ,        
-  salary ,        
-  telephone ,        
-  id    ,
-  ci_id
+    company_name  ,
+    company_introduce  ,
+    salary ,
+    telephone ,
+    id    ,
+    ci_id,
+    job_status,
+    job_place,
+    company_benefits,
+    job_sex,
+    jobperson
   
   </sql>
   
   <!--要添加的字段-->
   <sql id="ins_ComRecruitColumns_List" >
-       #{companyNeed},   #{postInformation},   #{jobDescription},   #{companyName},   #{companyIntroduce},   #{salary},   #{telephone},   #{id} ,#{ci_id}  </sql>
+       #{educationNeed}, #{experienceNeed},  #{postInformation},   #{jobDescription},   #{companyName},   #{companyIntroduce},   #{baseSalary}, #{totalSalary},   #{telephone},   #{id} ,#{ci_id},
+       #{jobStatus},#{jobPlace},#{companyBenefits},#{jobSex},#{jobperson}</sql>
   
   <!--要修改的字段-->
   <sql id="upd_ComRecruitColumns_List" >
     <set>
-    <if test="companyNeed != null">company_need = #{companyNeed}, </if>
+    <if test="educationNeed != null">education_need = #{educationNeed}, </if>
+    <if test="experienceNeed != null">experience_need = #{experienceNeed}, </if>
     <if test="postInformation != null">post_information = #{postInformation}, </if>
     <if test="jobDescription != null">job_description = #{jobDescription}, </if>
     <if test="companyName != null">company_name = #{companyName}, </if>
     <if test="companyIntroduce != null">company_introduce = #{companyIntroduce}, </if>
-    <if test="salary != null">salary = #{salary}, </if>
+    <if test="baseSalary != null">base_salary = #{baseSalary}, </if>
+    <if test="totalSalary != null">total_salary = #{totalSalary}, </if>
     <if test="telephone != null">telephone = #{telephone}, </if>
+    <if test="id != null">id = #{id}, </if>
 	<if test="ci_id != null">ci_id = #{ci_id}, </if>
+    <if test="jobStatus != null">job_status = #{jobStatus}, </if>
+    <if test="jobPlace != null">job_place = #{jobPlace}, </if>
+    <if test="companyBenefits != null">company_benefits = #{companyBenefits}, </if>
+    <if test="jobSex != null">job_sex = #{jobSex}, </if>
+    <if test="jobperson != null">jobperson = #{jobperson}, </if>
 	</set>
 	where id = #{id}
   </sql> 
@@ -52,30 +77,44 @@
   <!--定义删除的条件-->
   <sql id="del_ComRecruitPramas_List">
     <where>
-    <if test="companyNeed != null">and company_need = #{companyNeed}</if>
+    <if test="educationNeed != null">and education_need = #{educationNeed}</if>
+    <if test="experienceNeed != null">and experience_need = #{experienceNeed}</if>
     <if test="postInformation != null">and post_information = #{postInformation}</if>
     <if test="jobDescription != null">and job_description = #{jobDescription}</if>
     <if test="companyName != null">and company_name = #{companyName}</if>
     <if test="companyIntroduce != null">and company_introduce = #{companyIntroduce}</if>
-    <if test="salary != null">and salary = #{salary}</if>
+    <if test="baseSalary != null">and base_salary = #{baseSalary}</if>
+    <if test="totalSalary != null">and total_salary = #{totalSalary}</if>
     <if test="telephone != null">and telephone = #{telephone}</if>
     <if test="id != null">and id = #{id}</if>
 	<if test="ci_id != null">and ci_id = #{ci_id} </if>
+    <if test="jobPlace != null">and job_place = #{jobPlace}</if>
+    <if test="jobStatus != null">and job_status = #{jobStatus}</if>
+    <if test="companyBenefits != null">and company_benefits = #{companyBenefits}</if>
+    <if test="jobSex != null">and job_sex = #{jobSex}</if>
+    <if test="jobperson != null">and jobperson = #{jobperson}</if>
 	</where>
   </sql> 
   
   <!--定义查询的条件-->
   <sql id="sel_ComRecruitPramas_List">
     <where>
-    <if test="companyNeed != null">and company_need = #{companyNeed}</if>
-    <if test="postInformation != null">and post_information = #{postInformation}</if>
-    <if test="jobDescription != null">and job_description = #{jobDescription}</if>
-    <if test="companyName != null">and company_name = #{companyName}</if>
-    <if test="companyIntroduce != null">and company_introduce = #{companyIntroduce}</if>
-    <if test="salary != null">and salary = #{salary}</if>
-    <if test="telephone != null">and telephone = #{telephone}</if>
-    <if test="id != null">and id = #{id}</if>
-	<if test="ci_id != null">and ci_id = #{ci_id} </if>
+        <if test="educationNeed != null">and education_need = #{educationNeed}</if>
+        <if test="experienceNeed != null">and experience_need = #{experienceNeed}</if>
+        <if test="postInformation != null">and post_information = #{postInformation}</if>
+        <if test="jobDescription != null">and job_description = #{jobDescription}</if>
+        <if test="companyName != null">and company_name = #{companyName}</if>
+        <if test="companyIntroduce != null">and company_introduce = #{companyIntroduce}</if>
+        <if test="baseSalary != null">and base_salary = #{baseSalary}</if>
+        <if test="totalSalary != null">and total_salary = #{totalSalary}</if>
+        <if test="telephone != null">and telephone = #{telephone}</if>
+        <if test="id != null">and id = #{id}</if>
+        <if test="ci_id != null">and ci_id = #{ci_id} </if>
+        <if test="jobPlace != null">and job_place = #{jobPlace}</if>
+        <if test="jobStatus != null">and job_status = #{jobStatus}</if>
+        <if test="companyBenefits != null">and company_benefits = #{companyBenefits}</if>
+        <if test="jobSex != null">and job_sex = #{jobSex}</if>
+        <if test="jobperson != null">and jobperson = #{jobperson}</if>
 	</where>
   </sql>
 
@@ -110,6 +149,16 @@
 	<!--查询所有对象-->
 	<select id="queryAll" resultMap="comRecruitMap">
 		select  <include refid="sel_ComRecruitColumns_List" />  from com_recruit
+    </select>
+
+    <!--关于postInformation的模糊全查询-->
+    <select id="queryObject" resultType="comRecruitMap">
+        select <include refid="sel_ComRecruitColumns_List"/> from com_recruit
+        <where>
+            <if test="postInformation != null">
+                post_information like "%"#{postInformation}"%"
+            </if>
+        </where>
     </select>
 
     <!--根据条件（无条件）查询多个对象-->
