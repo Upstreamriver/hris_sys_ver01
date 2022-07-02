@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.djin.springboot.mapper.SchoolMessageMapper">
+    <resultMap type="SchoolMessage" id="schoolMessageMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="academicRequirements" column="academic_requirements"/>
+        <result property="type" column="type"/>
+        <result property="schoolTime" column="school_time"/>
+        <result property="code" column="code"/>
+        <result property="address" column="address"/>
+        <result property="introduction" column="introduction"/>
+        <result property="avatar" column="avatar"/>
+        <result property="phone" column="phone"/>
+        <result property="resources" column="resources"/>
+        <result property="createtime" column="createtime"/>
+        <result property="updatetime" column="updatetime"/>
+        <result property="is_status" column="is_status"/>
+        <result property="is_del" column="is_del"/>
+        <result property="fixed" column="fixed"/>
+        <result property="email" column="email"/>
+        <result property="principal" column="principal"/>
+        <result property="webisite" column="webisite"/>
+    </resultMap>
+
+    <!--要查询的字段-->
+    <sql id="sel_SchoolMessageColumns_List" >
+        id,
+        name,
+        academic_requirements,
+        type,
+        school_time,
+        code,
+        address,
+        introduction,
+        avatar,
+        phone,
+        resources,
+        createtime,
+        updatetime,
+        is_status,
+        is_del,
+        fixed,
+        email,
+        principal,
+        webisite
+    </sql>
+
+    <!--要添加的字段-->
+    <sql id="ins_SchoolMessageColumns_List" >
+        #{id},#{name},#{academicRequirements},#{type},#{schoolTime},#{code},#{address},#{introduction},#{avatar},#{phone},
+#{resources},#{createtime},#{updatetime},#{is_status},#{is_del},#{fixed},#{email},#{principal},#{webisite}
+    </sql>
+
+    <!--要修改的字段-->
+    <sql id="upd_SchoolMessageColumns_List" >
+        <set>
+            <if test="id != null">id = #{id}, </if>
+            <if test="name != null">name = #{name}, </if>
+            <if test="academicRequirements != null">academic_requirements = #{academicRequirements}, </if>
+            <if test="type != null">type = #{type}, </if>
+            <if test="schoolTime != null">school_time = #{schoolTime}, </if>
+            <if test="code != null">code = #{code}, </if>
+            <if test="address != null">address = #{address}, </if>
+            <if test="introduction != null">introduction = #{introduction}, </if>
+            <if test="avatar != null">avatar = #{avatar}, </if>
+            <if test="phone != null">phone = #{phone}, </if>
+            <if test="resources != null">resources = #{resources}, </if>
+            <if test="createtime != null">createtime = #{createtime}, </if>
+            <if test="updatetime != null">updatetime = #{updatetime}, </if>
+            <if test="is_status != null">is_status = #{is_status}, </if>
+            <if test="is_del != null">is_del = #{is_del}, </if>
+            <if test="fixed != null">fixed = #{fixed}, </if>
+            <if test="email != null">email = #{email}, </if>
+            <if test="principal != null">principal = #{principal}, </if>
+            <if test="webisite != null">webisite = #{webisite}, </if>
+        </set>
+        where id = #{id}
+    </sql>
+
+    <!--定义删除的条件-->
+    <sql id="del_SchoolMessagePramas_List">
+        <where>
+            <if test="id != null">and id = #{id}, </if>
+            <if test="name != null">and name = #{name}, </if>
+            <if test="academicRequirements != null">and academic_requirements = #{academicRequirements}, </if>
+            <if test="type != null">and type = #{type}, </if>
+            <if test="schoolTime != null">and school_time = #{schoolTime}, </if>
+            <if test="code != null">and code = #{code}, </if>
+            <if test="address != null">and address = #{address}, </if>
+            <if test="introduction != null">and introduction = #{introduction}, </if>
+            <if test="avatar != null">and avatar = #{avatar}, </if>
+            <if test="phone != null">and phone = #{phone}, </if>
+            <if test="resources != null">and resources = #{resources}, </if>
+            <if test="createtime != null">and createtime = #{createtime}, </if>
+            <if test="updatetime != null">and updatetime = #{updatetime}, </if>
+            <if test="is_status != null">and is_status = #{is_status}, </if>
+            <if test="is_del != null">and is_del = #{is_del}, </if>
+            <if test="fixed != null">and fixed = #{fixed}, </if>
+            <if test="email != null">and email = #{email}, </if>
+            <if test="principal != null">and principal = #{principal}, </if>
+            <if test="webisite != null">and webisite = #{webisite}, </if>
+        </where>
+    </sql>
+
+    <!--定义查询的条件-->
+    <sql id="sel_SchoolMessagePramas_List">
+        <where>
+            <if test="id != null">and id = #{id}, </if>
+            <if test="name != null">and name = #{name}, </if>
+            <if test="academicRequirements != null">and academic_requirements = #{academicRequirements}, </if>
+            <if test="type != null">and type = #{type}, </if>
+            <if test="schoolTime != null">and school_time = #{schoolTime}, </if>
+            <if test="code != null">and code = #{code}, </if>
+            <if test="address != null">and address = #{address}, </if>
+            <if test="introduction != null">and introduction = #{introduction}, </if>
+            <if test="avatar != null">and avatar = #{avatar}, </if>
+            <if test="phone != null">and phone = #{phone}, </if>
+            <if test="resources != null">and resources = #{resources}, </if>
+            <if test="createtime != null">and createtime = #{createtime}, </if>
+            <if test="updatetime != null">and updatetime = #{updatetime}, </if>
+            <if test="is_status != null">and is_status = #{is_status}, </if>
+            <if test="is_del != null">and is_del = #{is_del}, </if>
+            <if test="fixed != null">and fixed = #{fixed}, </if>
+            <if test="email != null">and email = #{email}, </if>
+            <if test="principal != null">and principal = #{principal}, </if>
+            <if test="webisite != null">and webisite = #{webisite}, </if>
+        </where>
+    </sql>
+
+    <!--添加-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into school_message values (<include refid="ins_SchoolMessageColumns_List" />)
+    </insert>
+
+    <!--修改-->
+    <update id="update">
+        update school_message <include refid="upd_SchoolMessageColumns_List" />
+    </update>
+
+    <!--根据条件删除-->
+    <delete id="delete">
+        delete from school_message <include refid="del_SchoolMessagePramas_List" />
+    </delete>
+
+    <!--批量删除-->
+    <delete id="deleteBatch">
+        delete from school_message where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--根据主键id查询单个对象-->
+    <select id="queryObjectById" resultMap="schoolMessageMap">
+        select  <include refid="sel_SchoolMessageColumns_List" />  from school_message where id = #{id}
+    </select>
+
+    <!--查询所有对象-->
+    <select id="queryAll" resultMap="schoolMessageMap">
+        select  <include refid="sel_schoolMessageColumns_List" />  from school_message
+    </select>
+
+    <!--根据条件（无条件）查询多个对象-->
+    <select id="queryManyByPramas" resultMap="schoolMessageMap">
+        select  <include refid="sel_schoolMessageColumns_List" />  from school_message <include refid="sel_SchoolMessagePramas_List" />
+    </select>
+
+    <!--根据条件（无条件）分页查询-->
+    <select id="queryListByPramas" resultMap="schoolMessageMap">
+        select  <include refid="sel_schoolMessageColumns_List" />  from school_message <include refid="sel_SchoolMessagePramas_List" /> order by id desc
+    </select>
+
+    <!--根据条件查询单条数据-->
+    <select id="queryObjectByPramas" resultMap="schoolMessageMap">
+        select  <include refid="sel_schoolMessageColumns_List" />  from school_message <include refid="sel_schoolMessagePramas_List" />
+    </select>
+
+    <!--根据条件（无条件）查询数据条数-->
+    <select id="queryTotalByPramas" resultType="java.lang.Long">
+        select count(*) from school_message <include refid="sel_schoolMessagePramas_List" />
+    </select>
+
+
+
+</mapper>
