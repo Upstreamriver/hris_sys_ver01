@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.djin.springboot.mapper.CollegeMessageMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="CollegeMessage" id="collegeMessageMap">
+        <result property="id" column="id"/>
+        <result property="sc_id" column="sc_id"/>
+        <result property="collegeName" column="college_name"/>
+        <result property="collegeFixed" column="college_fixed"/>
+        <result property="collegePrincipal" column="college_principal"/>
+        <result property="collegeIntroduction" column="college_introduction"/>
+        <result property="collegeWebisite" column="colleg_webisite"/>
+        <result property="collegeResources" column="college_resources"/>
+        <result property="collegeEmail" column="college_email"/>
+        <result property="is_status" column="is_status"/>
+        <result property="is_del" column="is_del"/>
+    </resultMap>
+
+
+    <!--要查询的字段-->
+    <sql id="sel_CollegeMessageColumns_List" >
+        id ,
+   sc_id  ,
+   college_name  ,
+   college_fixed  ,
+   college_principal  ,
+  college_introduction ,
+   colleg_webisite  ,
+   college_resources  ,
+  college_email ,
+   is_status  ,
+  is_del   ,
+
+    </sql>
+
+    <!--要添加的字段-->
+    <sql id="ins_CollegeMessageColumns_List" >
+        #{id},   #{sc_id},   #{collegeName},   #{collegeFixed},   #{collegePrincipal},   #{collegeIntroduction},
+        #{collegeWebisite},   #{collegeResources},   #{collegeEmail},   #{is_status},   #{is_del}  </sql>
+
+    <!--要修改的字段-->
+    <sql id="upd_CollegeMessageColumns_List" >
+        <set>
+            <if test="id != null">id = #{id}, </if>
+            <if test="sc_id != null">sc_id = #{sc_id}, </if>
+            <if test="collegeName != null">college_name  = #{collegeName}, </if>
+            <if test="collegeFixed != null">college_fixed  = #{collegeFixed}, </if>
+            <if test="collegePrincipal != null">college_principal = #{collegePrincipal}, </if>
+            <if test="collegeIntroduction != null">college_introduction = #{collegeIntroduction}, </if>
+            <if test="collegeWebisite != null">colleg_webisite = #{collegeWebisite}, </if>
+            <if test="collegeResources != null">college_resources = #{collegeResources}, </if>
+            <if test="collegeEmail != null">college_email = #{collegeEmail}, </if>
+            <if test="is_status != null">is_status = #{is_status}, </if>
+            <if test="is_del != null">is_del = #{is_del}, </if>
+        </set>
+        where id = #{id}
+    </sql>
+
+    <!--定义删除的条件-->
+    <sql id="del_CollegeMessagePramas_List">
+        <where>
+            <if test="id != null">and id = #{id}, </if>
+            <if test="sc_id != null">and sc_id = #{sc_id}, </if>
+            <if test="collegeName != null">and college_name  = #{collegeName}, </if>
+            <if test="collegeFixed != null">and college_fixed  = #{collegeFixed}, </if>
+            <if test="collegePrincipal != null">and college_principal = #{collegePrincipal}, </if>
+            <if test="collegeIntroduction != null">and college_introduction = #{collegeIntroduction}, </if>
+            <if test="collegeWebisite != null">and colleg_webisite = #{collegeWebisite}, </if>
+            <if test="collegeResources != null">and college_resources = #{collegeResources}, </if>
+            <if test="collegeEmail != null">and college_email = #{collegeEmail}, </if>
+            <if test="is_status != null">and is_status = #{is_status}, </if>
+            <if test="is_del != null">and is_del = #{is_del}, </if>
+        </where>
+    </sql>
+
+    <!--定义查询的条件-->
+    <sql id="sel_CollegeMessagePramas_List">
+        <where>
+            <if test="id != null">and id = #{id}, </if>
+            <if test="sc_id != null">and sc_id = #{sc_id}, </if>
+            <if test="collegeName != null">and college_name  = #{collegeName}, </if>
+            <if test="collegeFixed != null">and college_fixed  = #{collegeFixed}, </if>
+            <if test="collegePrincipal != null">and college_principal = #{collegePrincipal}, </if>
+            <if test="collegeIntroduction != null">and college_introduction = #{collegeIntroduction}, </if>
+            <if test="collegeWebisite != null">and colleg_webisite = #{collegeWebisite}, </if>
+            <if test="collegeResources != null">and college_resources = #{collegeResources}, </if>
+            <if test="collegeEmail != null">and college_email = #{collegeEmail}, </if>
+            <if test="is_status != null">and is_status = #{is_status}, </if>
+            <if test="is_del != null">and is_del = #{is_del}, </if>
+        </where>
+    </sql>
+
+
+    <!--添加-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into college_message values (<include refid="ins_CollegeMessage_List" />)
+    </insert>
+
+    <!--修改-->
+    <update id="update">
+        update college_message <include refid="upd_CollegeMessageColumns_List" />
+    </update>
+
+    <!--根据条件删除-->
+    <delete id="delete">
+        delete from college_message <include refid="del_CollegeMessagePramas_List" />
+    </delete>
+
+    <!--批量删除-->
+    <delete id="deleteBatch">
+        delete from college_message where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--根据主键id查询单个对象-->
+    <select id="queryObjectById" resultMap="collegeMessageMap">
+        select  <include refid="sel_collegeMessageColumns_List" />  from college_message where id = #{id}
+    </select>
+
+    <!--查询所有对象-->
+    <select id="queryAll" resultMap="collegeMessageMap">
+        select  <include refid="sel_collegeMessageColumns_List" />  from college_message
+    </select>
+
+    <!--根据条件（无条件）查询多个对象-->
+    <select id="queryManyByPramas" resultMap="collegeMessageMap">
+        select  <include refid="sel_collegeMessageColumns_List" />  from college_message <include refid="sel_collegeMessagePramas_List" />
+    </select>
+
+    <!--根据条件（无条件）分页查询-->
+    <select id="queryListByPramas" resultMap="collegeMessageMap">
+        select  <include refid="sel_collegeMessageColumns_List" />  from college_message <include refid="sel_collegeMessagePramas_List" /> order by id desc
+    </select>
+
+    <!--根据条件查询单条数据-->
+    <select id="queryObjectByPramas" resultMap="collegeMessageMap">
+        select  <include refid="sel_collegeMessageColumns_List" />  from college_message <include refid="sel_collegeMessagePramas_List" />
+    </select>
+
+    <!--根据条件（无条件）查询数据条数-->
+    <select id="queryTotalByPramas" resultType="java.lang.Long">
+        select count(*) from college_message <include refid="sel_collegeMessagePramas_List" />
+    </select>
+
+
+
+</mapper>
