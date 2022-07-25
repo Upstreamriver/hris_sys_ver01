@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.djin.springboot.mapper.StuInforMapper">
+    <resultMap type="StuInfor" id="StuInforMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="censusRegister" column="censu_register"/>
+        <result property="address" column="address"/>
+        <result property="phone" column="phone"/>
+        <result property="phone" column="phone"/>
+        <result property="academic" column="academic"/>
+        <result property="academic" column="academic"/>
+        <result property="educationTime" column="education_time"/>
+        <result property="expectedPosition" column="expecte_position"/>
+        <result property="expectedArea" column="expected_area"/>
+        <result property="experience" column="experience"/>
+        <result property="industey" column="industey"/>
+        <result property="jobStatus" column="job_status"/>
+        <result property="expectedSalary" column="expected_salary"/>
+        <result property="reachTime" column="reach_time"/>
+        <result property="personalHonor" column="personal_honor"/>
+        <result property="personalProfile" column="personal_profile"/>
+    </resultMap>
+
+        <!--要查询的字段-->
+        <sql id="sel_StuInforColumns_List" >
+            id,
+            name,
+            age,
+            censu_register,
+            address,
+            phone,
+            email,
+            academic,
+            filed,
+            education_time,
+            expecte_position,
+            expected_area,
+            experience,
+            industey,
+            job_status,
+            expected_salary,
+            reach_time,
+            personal_honor,
+            personal_profile
+        </sql>
+
+        <!--要添加的字段-->
+        <sql id="ins_StuInforColumns_List" >
+            #{id},#{name},#{age},#{censusRegister},#{address},#{phone},#{phone},#{academic},#{filed},#{educationTime},
+#{expectedPosition},#{expectedArea},#{experience},#{industey},#{jobStatus},#{expectedSalary},#{reachTime},#{personalHonor},#{personalProfile}
+        </sql>
+
+    <!--要修改的字段-->
+    <sql id="upd_StuInforColumns_List" >
+        <set>
+            <if test="id != null">id = #{id}, </if>
+            <if test="name != null">name = #{name}, </if>
+            <if test="age != null">age = #{age}, </if>
+            <if test="censusRegister != null">censu_register = #{censusRegister}, </if>
+            <if test="address != null">address = #{address}, </if>
+            <if test="phone != null">phone = #{phone}, </if>
+            <if test="email != null">email = #{email}, </if>
+            <if test="academic != null">academic = #{academic}, </if>
+            <if test="filed != null">filed = #{filed}, </if>
+            <if test="educationTime != null">education_time = #{educationTime}, </if>
+            <if test="expectedPosition  != null">expecte_position = #{expectedPosition}, </if>
+            <if test="expectedArea != null">expected_area = #{expectedArea}, </if>
+            <if test="experience != null">experience = #{experience}, </if>
+            <if test="industey != null">industey = #{industey}, </if>
+            <if test="jobStatus != null">job_status = #{jobStatus}, </if>
+            <if test="expectedSalary != null">expected_salary = #{expectedSalary}, </if>
+            <if test="reachTime != null">reach_time = #{reachTime}, </if>
+            <if test="personalHonor != null">personal_honor = #{personalHonor}, </if>
+            <if test="personalProfile  != null">personal_profile = #{personalProfile}, </if>
+        </set>
+        where id = #{id}
+    </sql>
+
+    <!--定义删除的条件-->
+    <sql id="del_StuInforPramas_List">
+        <where>
+            <if test="id != null">and id = #{id}, </if>
+            <if test="name != null">and name = #{name}, </if>
+            <if test="age != null">and age = #{age}, </if>
+            <if test="censusRegister != null">and censu_register = #{censusRegister}, </if>
+            <if test="address != null">and address = #{address}, </if>
+            <if test="phone != null">and phone = #{phone}, </if>
+            <if test="email != null">and email = #{email}, </if>
+            <if test="academic != null">and academic = #{academic}, </if>
+            <if test="filed != null">and filed = #{filed}, </if>
+            <if test="educationTime != null">and education_time = #{educationTime}, </if>
+            <if test="expectedPosition  != null">and expecte_position = #{expectedPosition}, </if>
+            <if test="expectedArea != null">and expected_area = #{expectedArea}, </if>
+            <if test="experience != null">and experience = #{experience}, </if>
+            <if test="industey != null">and industey = #{industey}, </if>
+            <if test="jobStatus != null">and job_status = #{jobStatus}, </if>
+            <if test="expectedSalary != null">and expected_salary = #{expectedSalary}, </if>
+            <if test="reachTime != null">and reach_time = #{reachTime}, </if>
+            <if test="personalHonor != null">and personal_honor = #{personalHonor}, </if>
+            <if test="personalProfile  != null">and personal_profile = #{personalProfile}, </if>
+        </where>
+    </sql>
+
+    <!--定义查询的条件-->
+    <sql id="sel_StuInforPramas_List">
+        <where>
+            <if test="id != null">and id = #{id}, </if>
+            <if test="name != null">and name = #{name}, </if>
+            <if test="age != null">and age = #{age}, </if>
+            <if test="censusRegister != null">and censu_register = #{censusRegister}, </if>
+            <if test="address != null">and address = #{address}, </if>
+            <if test="phone != null">and phone = #{phone}, </if>
+            <if test="email != null">and email = #{email}, </if>
+            <if test="academic != null">and academic = #{academic}, </if>
+            <if test="filed != null">and filed = #{filed}, </if>
+            <if test="educationTime != null">and education_time = #{educationTime}, </if>
+            <if test="expectedPosition  != null">and expecte_position = #{expectedPosition}, </if>
+            <if test="expectedArea != null">and expected_area = #{expectedArea}, </if>
+            <if test="experience != null">and experience = #{experience}, </if>
+            <if test="industey != null">and industey = #{industey}, </if>
+            <if test="jobStatus != null">and job_status = #{jobStatus}, </if>
+            <if test="expectedSalary != null">and expected_salary = #{expectedSalary}, </if>
+            <if test="reachTime != null">and reach_time = #{reachTime}, </if>
+            <if test="personalHonor != null">and personal_honor = #{personalHonor}, </if>
+            <if test="personalProfile  != null">and personal_profile = #{personalProfile}, </if>
+        </where>
+    </sql>
+
+    <!--添加-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into Stu_infor values (<include refid="ins_stuInforColumns_List" />)
+    </insert>
+
+    <!--修改-->
+    <update id="update">
+        update stu_infor <include refid="upd_stuInforColumns_List" />
+    </update>
+
+    <!--根据条件删除-->
+    <delete id="delete">
+        delete from stu_infor <include refid="del_stuInforPramas_List" />
+    </delete>
+
+    <!--批量删除-->
+    <delete id="deleteBatch">
+        delete from stu_infor where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--根据主键id查询单个对象-->
+    <select id="queryObjectById" resultMap="stuInforMap">
+        select  <include refid="sel_SchoolMessageColumns_List" />  from stu_infor where id = #{id}
+    </select>
+
+    <!--查询所有对象-->
+    <select id="queryAll" resultMap="stuInforMap">
+        select  <include refid="sel_stuInforColumns_List" />  from stu_infor
+    </select>
+
+    <!--根据条件（无条件）查询多个对象-->
+    <select id="queryManyByPramas" resultMap="stuInforMap">
+        select  <include refid="sel_stuInforColumns_List" />  from stu_infor <include refid="sel_SchoolMessagePramas_List" />
+    </select>
+
+    <!--根据条件（无条件）分页查询-->
+    <select id="queryListByPramas" resultMap="stuInforMap">
+        select  <include refid="sel_stuInforColumns_List" />  from stu_infor <include refid="sel_SchoolMessagePramas_List" /> order by id desc
+    </select>
+
+    <!--根据条件查询单条数据-->
+    <select id="queryObjectByPramas" resultMap="stuInforMap">
+        select  <include refid="sel_stuInforColumns_List" />  from stu_infor <include refid="sel_schoolMessagePramas_List" />
+    </select>
+
+    <!--根据条件（无条件）查询数据条数-->
+    <select id="queryTotalByPramas" resultType="java.lang.Long">
+        select count(*) from stu_infor <include refid="sel_stuInforPramas_List" />
+    </select>
+
+
+
+</mapper>
